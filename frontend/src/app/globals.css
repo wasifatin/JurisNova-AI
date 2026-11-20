@@ -1,0 +1,492 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #07140F;
+  --bg-secondary: #0A1D16;
+  --bg-elevated: #10251C;
+  --bg-card: #0D2119;
+  --border-color: rgba(134, 250, 175, 0.13);
+  --text-primary: #F5FAF6;
+  --text-secondary: #A3B8AC;
+  --accent-color: #00D765;
+  --ease-hemla: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.light {
+  --bg-primary: #F5FAF6;
+  --bg-secondary: #FFFFFF;
+  --bg-elevated: #EBF4EE;
+  --bg-card: #FFFFFF;
+  --border-color: #B5CCC0;
+  --text-primary: #0F1F15;
+  --text-secondary: #1F382A;
+  --accent-color: #007A54;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  overflow-x: hidden;
+  transition: background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =========================================================================
+   Hemla View Transitions (Circular Ripple Theme Toggle Animation)
+   ========================================================================= */
+::view-transition-old(root) {
+  mix-blend-mode: normal;
+  animation: none;
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  mix-blend-mode: normal;
+  animation: none;
+  z-index: 9999;
+}
+
+::view-transition-group(root) {
+  animation: none;
+}
+
+/* =========================================================================
+   Hemla Section & Page Transitions (fadeSlideUp & Stagger)
+   ========================================================================= */
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-slide-up {
+  animation: fadeSlideUp 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Hemla breathe live pulse */
+@keyframes breathe {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.16);
+  }
+}
+
+.animate-breathe {
+  animation: breathe 2s ease-in-out infinite;
+}
+
+/* Hemla metric flash on update */
+@keyframes flash {
+  0% {
+    color: var(--accent-color);
+    transform: scale(1.02);
+  }
+  100% {
+    color: inherit;
+    transform: scale(1);
+  }
+}
+
+.animate-flash {
+  animation: flash 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Card hover transitions from Hemla */
+.hemla-card {
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hemla-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+}
+
+.light .hemla-card:hover {
+  box-shadow: 0 10px 25px -5px rgba(19, 37, 27, 0.08);
+  border-color: rgba(0, 135, 95, 0.3);
+}
+
+/* Button & Nav micro-interactions */
+button, a {
+  transition: all 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+button:active {
+  transform: scale(0.985);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(134, 250, 175, 0.2);
+  border-radius: 9999px;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: rgba(0, 135, 95, 0.25);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(48, 237, 123, 0.4);
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 135, 95, 0.45);
+}
+
+/* Glassmorphism surfaces */
+.glass-panel {
+  background: rgba(13, 33, 25, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(134, 250, 175, 0.13);
+}
+
+.light .glass-panel {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  border: 1px solid #B5CCC0 !important;
+}
+
+.light .hemla-card {
+  border-color: #B5CCC0 !important;
+  box-shadow: 0 1px 3px 0 rgba(19, 37, 27, 0.08), 0 1px 2px -1px rgba(19, 37, 27, 0.04);
+}
+
+.light .border-\[var\(--border-color\)\] {
+  border-color: #B5CCC0 !important;
+}
+
+.light .text-\[var\(--text-secondary\)\] {
+  color: #1F382A !important;
+}
+
+.light .border-white\/10,
+.light .border-white\/20 {
+  border-color: #B5CCC0 !important;
+}
+
+/* Brand Gradient Text */
+.text-gradient {
+  background: linear-gradient(135deg, #86FAAF 0%, #30ED7B 30%, #00D765 70%, #00B369 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.light .text-gradient {
+  background: linear-gradient(135deg, #00875F 0%, #00B369 60%, #00D765 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* =========================================================================
+   Light Mode High-Contrast Visibility Fixes
+   Fixes washed out text, invisible white text, and light mint on white
+   ========================================================================= */
+.light .text-brand-mint,
+.light .\text-brand-mint\/90,
+.light .\text-brand-mint\/80,
+.light .\text-brand-mint\/70,
+.light .\text-brand-mint\/60,
+.light .\text-brand-mint\/50,
+.light [class*="text-brand-mint"]:not([class*="hover:"]):not([class*="group-hover:"]):not([class*="from-"]):not([class*="to-"]) {
+  color: #005F3F !important;
+}
+
+.light .text-brand-bright,
+.light .\text-brand-bright\/90,
+.light .\text-brand-bright\/80,
+.light .\text-brand-bright\/70,
+.light .\text-brand-bright\/60,
+.light .\text-brand-bright\/50,
+.light [class*="text-brand-bright"]:not([class*="hover:"]):not([class*="group-hover:"]):not([class*="from-"]):not([class*="to-"]) {
+  color: #005F3F !important;
+}
+
+.light .hover\:text-brand-mint:hover,
+.light [class*="hover:text-brand-mint"]:hover {
+  color: #005F3F !important;
+}
+
+.light .group:hover .group-hover\:text-brand-mint,
+.light [class*="group"]:hover [class*="group-hover:text-brand-mint"] {
+  color: #005F3F !important;
+}
+
+.light .text-emerald-400,
+.light .text-emerald-300,
+.light .text-emerald-500,
+.light [class*="text-emerald-"]:not([class*="hover:"]):not([class*="group-hover:"]) {
+  color: #005F3F !important;
+}
+
+.light .text-amber-300,
+.light .text-yellow-300,
+.light .text-amber-400,
+.light .text-yellow-400,
+.light [class*="text-amber-"]:not([class*="hover:"]):not([class*="group-hover:"]),
+.light [class*="text-yellow-"]:not([class*="hover:"]):not([class*="group-hover:"]) {
+  color: #92400E !important;
+}
+
+.light .text-orange-300,
+.light .text-orange-400,
+.light [class*="text-orange-"]:not([class*="hover:"]):not([class*="group-hover:"]) {
+  color: #C2410C !important;
+}
+
+.light .bg-orange-500\/10,
+.light .bg-orange-500\/20 {
+  background-color: rgba(234, 88, 12, 0.12) !important;
+  border-color: rgba(234, 88, 12, 0.25) !important;
+}
+
+.light .text-red-300,
+.light .text-red-400,
+.light [class*="text-red-"]:not([class*="hover:"]):not([class*="group-hover:"]) {
+  color: #991B1B !important;
+}
+
+.light .bg-brand-forest\/20 {
+  background-color: rgba(0, 135, 95, 0.12) !important;
+}
+
+.light .bg-brand-forest\/30 {
+  background-color: rgba(0, 135, 95, 0.18) !important;
+}
+
+.light .bg-brand-forest\/10 {
+  background-color: rgba(0, 135, 95, 0.08) !important;
+}
+
+.light .bg-brand-emerald\/15,
+.light .bg-brand-emerald\/20,
+.light .bg-brand-emerald\/30 {
+  background-color: rgba(0, 135, 95, 0.14) !important;
+  border-color: rgba(0, 122, 84, 0.3) !important;
+}
+
+.light .bg-brand-bright\/10,
+.light .bg-brand-bright\/20 {
+  background-color: rgba(0, 135, 95, 0.12) !important;
+}
+
+.light .border-brand-mint\/20,
+.light .border-brand-mint\/30 {
+  border-color: rgba(0, 122, 84, 0.3) !important;
+}
+
+.light .border-brand-mint {
+  border-color: #00875F !important;
+}
+
+.light select option {
+  background-color: #FFFFFF;
+  color: #0F1F15;
+}
+
+.light input::placeholder,
+.light textarea::placeholder {
+  color: #7D8F82;
+}
+
+.light input[type="file"]::file-selector-button {
+  background-color: rgba(0, 135, 95, 0.15) !important;
+  color: #005F3F !important;
+}
+
+.light .bg-emerald-950\/40,
+.light .bg-emerald-950\/20 {
+  background-color: rgba(0, 135, 95, 0.12) !important;
+  border-color: rgba(0, 135, 95, 0.25) !important;
+}
+
+.light .bg-red-950\/20,
+.light .bg-red-950\/40 {
+  background-color: rgba(220, 38, 38, 0.1) !important;
+  border-color: rgba(220, 38, 38, 0.25) !important;
+}
+
+.light .bg-gray-800 {
+  background-color: #E2E8F0 !important;
+}
+
+.light .text-gray-500 {
+  color: #64748B !important;
+}
+
+.light .text-gray-400 {
+  color: #475569 !important;
+}
+
+.light .border-emerald-500\/20 {
+  border-color: rgba(0, 135, 95, 0.25) !important;
+}
+
+.light .border-red-500\/20 {
+  border-color: rgba(220, 38, 38, 0.25) !important;
+}
+
+.light .border-amber-500\/20,
+.light .border-yellow-500\/20 {
+  border-color: rgba(217, 119, 6, 0.25) !important;
+}
+
+.light .bg-amber-500\/10,
+.light .bg-yellow-500\/10,
+.light .bg-yellow-500\/20 {
+  background-color: rgba(245, 158, 11, 0.12) !important;
+}
+
+.light .bg-red-500\/10,
+.light .bg-red-500\/20 {
+  background-color: rgba(239, 68, 68, 0.1) !important;
+}
+
+.light input,
+.light textarea,
+.light select {
+  color: #0F1F15;
+}
+
+.light input:focus,
+.light textarea:focus,
+.light select:focus {
+  border-color: #00875F !important;
+}
+
+/* =========================================================================
+   UIverse Checkbox Animation: Tsiangana/tame-lionfish-36
+   ========================================================================= */
+.lionfish-checkbox-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.lionfish-checkbox {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  border: 1.5px solid rgba(48, 237, 123, 0.4);
+  background: var(--bg-elevated);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.lionfish-checkbox:hover {
+  border-color: #30ED7B;
+  box-shadow: 0 0 12px rgba(48, 237, 123, 0.3);
+  transform: scale(1.08);
+}
+
+.lionfish-checkbox.checked {
+  background: linear-gradient(135deg, #30ED7B 0%, #00B369 100%);
+  border-color: #86FAAF;
+  box-shadow: 0 0 16px rgba(48, 237, 123, 0.5);
+  animation: lionfishPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes lionfishPop {
+  0% { transform: scale(0.85); }
+  60% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.lionfish-path {
+  stroke-dasharray: 22;
+  stroke-dashoffset: 22;
+  transition: stroke-dashoffset 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.05s;
+}
+
+.lionfish-checkbox.checked .lionfish-path {
+  stroke-dashoffset: 0;
+}
+
+/* =========================================================================
+   UIverse Interactive Button Animation: elijahgummer/hard-turkey-58
+   ========================================================================= */
+.btn-hard-turkey {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-hard-turkey::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.btn-hard-turkey:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(48, 237, 123, 0.38), 0 0 12px rgba(134, 250, 175, 0.25);
+  filter: brightness(1.08);
+}
+
+.btn-hard-turkey:hover::before {
+  left: 140%;
+}
+
+.btn-hard-turkey:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow: 0 2px 6px rgba(48, 237, 123, 0.2);
+}
+
+.btn-hard-turkey svg {
+  transition: transform 0.25s ease;
+}
+
+.btn-hard-turkey:hover svg {
+  transform: translateX(3px);
+}
+
