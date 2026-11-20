@@ -81,7 +81,7 @@ export default function AuditLogDetailModal({
                 {Object.entries(log.details).map(([key, val]) => (
                   <div key={key} className="flex items-center justify-between gap-2 border-b border-[var(--border-color)]/40 pb-1 last:border-0 last:pb-0">
                     <span className="text-[var(--text-secondary)]">{key}:</span>
-                    <span className="text-brand-bright font-bold truncate">{String(val)}</span>
+                    <span className="text-brand-bright font-bold truncate">{typeof val === "object" ? JSON.stringify(val) : String(val)}</span>
                   </div>
                 ))}
               </div>

@@ -14,7 +14,7 @@ import {
   Layers,
   Scale
 } from "lucide-react";
-import { ReportTemplate } from "@/lib/exportAuditPdf";
+import { ReportTemplate, openPrintableDossier } from "@/lib/exportAuditPdf";
 
 interface AuditReportPreviewModalProps {
   report: ReportTemplate | null;
@@ -32,7 +32,7 @@ export default function AuditReportPreviewModal({
   if (!isOpen || !report) return null;
 
   const handlePrint = () => {
-    window.print();
+    openPrintableDossier(report);
   };
 
   return (

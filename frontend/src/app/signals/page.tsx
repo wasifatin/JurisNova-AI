@@ -201,15 +201,21 @@ export default function GovernanceSignalsPage() {
                 {/* Key Metrics / Observed Changes Chips */}
                 {sig.what_changed && (
                   <div className="flex flex-wrap items-center gap-2 pt-1">
-                    {Object.entries(sig.what_changed).map(([k, val]: any) => (
-                      <span
-                        key={k}
-                        className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-[var(--bg-elevated)] border border-[var(--border-color)] text-[var(--text-primary)]"
-                      >
-                        <strong className="text-brand-mint">{k.replace("_", " ")}: </strong>
-                        <span>{String(val)}</span>
+                    {typeof sig.what_changed === "object" ? (
+                      Object.entries(sig.what_changed).map(([k, val]: any) => (
+                        <span
+                          key={k}
+                          className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-[var(--bg-elevated)] border border-[var(--border-color)] text-[var(--text-primary)]"
+                        >
+                          <strong className="text-brand-mint">{k.replace(/_/g, " ")}: </strong>
+                          <span>{typeof val === "object" ? JSON.stringify(val) : String(val)}</span>
+                        </span>
+                      ))
+                    ) : (
+                      <span className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-[var(--bg-elevated)] border border-[var(--border-color)] text-[var(--text-secondary)]">
+                        {String(sig.what_changed)}
                       </span>
-                    ))}
+                    )}
                   </div>
                 )}
 

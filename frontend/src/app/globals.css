@@ -15,14 +15,20 @@
 }
 
 .light {
-  --bg-primary: #F5FAF6;
+  --bg-primary: #F4F8F5;
   --bg-secondary: #FFFFFF;
-  --bg-elevated: #EBF4EE;
+  --bg-elevated: #E5EFE8;
   --bg-card: #FFFFFF;
-  --border-color: #B5CCC0;
-  --text-primary: #0F1F15;
-  --text-secondary: #1F382A;
+  --border-color: #8EB49F;
+  --text-primary: #0A1E13;
+  --text-secondary: #2C4837;
   --accent-color: #007A54;
+}
+
+.light .hemla-card,
+.light .glass-panel {
+  border-color: #8EB49F !important;
+  box-shadow: 0 1px 4px rgba(10, 30, 19, 0.08);
 }
 
 body {

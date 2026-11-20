@@ -327,7 +327,7 @@ export default function RegulatoryHubPage() {
                   </span>
                 </div>
 
-                <div className="text-xs sm:text-sm text-[var(--text-primary)] leading-relaxed bg-[var(--bg-elevated)] p-4 rounded-xl border border-[var(--border-color)] shadow-inner">
+                <div className="text-xs sm:text-sm text-emerald-100 dark:text-emerald-100 text-[var(--text-primary)] leading-relaxed bg-[var(--bg-elevated)] p-4 rounded-xl border border-[var(--border-color)] shadow-inner font-sans">
                   {reqText}
                 </div>
 

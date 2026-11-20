@@ -135,13 +135,26 @@ export default function AuditsPage() {
 
   const formatLogDetails = (details: any): string => {
     if (!details) return "";
-    if (typeof details === "string") return details;
-    if (typeof details === "object") {
+    if (typeof details === "string") {
+      try {
+        const parsed = JSON.parse(details);
+        if (typeof parsed === "object" && parsed !== null) {
+          details = parsed;
+        } else {
+          return details;
+        }
+      } catch {
+        return details;
+      }
+    }
+    if (typeof details === "object" && details !== null) {
       try {
         if (details.scope || details.score) {
-          return `Scope: ${details.scope || "Unified"} • Score: ${details.score || "N/A"}% • Verification: ${Math.round((details.verification_score || 0.95) * 100)}%`;
+          return `Scope: ${details.scope || "Unified"} • Score: ${details.score || "N/A"}% • Verification: ${Math.round((Number(details.verification_score) || 0.95) * 100)}%`;
         }
-        return JSON.stringify(details);
+        return Object.entries(details)
+          .map(([k, v]) => `${k.replace(/_/g, " ")}: ${typeof v === "object" ? JSON.stringify(v) : v}`)
+          .join(" • ");
       } catch {
         return "[Event Metadata]";
       }

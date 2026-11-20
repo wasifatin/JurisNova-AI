@@ -218,10 +218,10 @@ export default function ExecutiveReportsPage() {
   };
 
   // Safe numerical KPIs
-  const totalGrievances = (data.kpis?.total_grievances ?? 1500).toLocaleString();
-  const activeProjects = (data.kpis?.active_capital_projects ?? 20).toLocaleString();
-  const trackedProcurements = (data.kpis?.tracked_procurements ?? 15).toLocaleString();
-  const activeInvestigations = (data.kpis?.active_investigations ?? 1).toLocaleString();
+  const totalGrievances = (data?.kpis?.total_grievances ?? 1500).toLocaleString();
+  const activeProjects = (data?.kpis?.active_capital_projects ?? 20).toLocaleString();
+  const trackedProcurements = (data?.kpis?.tracked_procurements ?? 15).toLocaleString();
+  const activeInvestigations = (data?.kpis?.active_investigations ?? 1).toLocaleString();
 
   const formatWhatChanged = (wc: any): string => {
     if (!wc) return "Operational variance observed across service channels.";
